@@ -1,0 +1,7 @@
+{
+    "port": 5000,
+    "mongoUri": "mongodb+srv://admin:Dklriy453@cluster0.wcshg.mongodb.net/app?retryWrites=true&w=majority",
+    "jwtSecret": "inftechprognodeapp",
+    "mongoLocalUri": "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+    "baseUrl": "http://localhost:5000"
+}

@@ -1,0 +1,43 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+.auth-button{
+    margin-right: 10px;
+}
+
+input.custom-input:focus{
+    border-bottom: 1px solid #1836be!important;
+    box-shadow: 0 1px 0 0 #1836be!important
+}
+
+input.custom-input{
+    border-bottom: 1px solid #fff!important;
+    box-shadow: 0 1px 0 0 #fff!important;
+}
+
+input.custom-input + label{
+    color: #fff!important
+}
+
+input.custom-input:focus + label{
+    color: #1836be!important
+}
+
+.custom-input-field{
+    margin-top: 30px;
+    margin-bottom: -20px;
+}
+
+.navbar-padding{
+    padding: 0 2rem;
+}
+
+.custom-loader{
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.upload-label{
+    padding: 2rem;
+    font-size: 25px;
+}
