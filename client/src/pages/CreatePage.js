@@ -30,6 +30,7 @@ export const CreatePage = () => {
                     type="file"
                     name="video"
                     className="custom-input"
+                    multiple="multiple"
                   />
                   <label htmlFor="video" className="active">Upload video</label>
                 </div>
@@ -39,6 +40,7 @@ export const CreatePage = () => {
                     type="file"
                     name="thumbnail"
                     className="custom-input"
+                    multiple="multiple"
                   />
                   <label htmlFor="thumbnail" className="active">
                     Upload thumbnail

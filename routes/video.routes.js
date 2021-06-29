@@ -6,48 +6,43 @@ const auth = require ('../middleware/auth.middleware');
 var formidable = require ('formidable');
 var fileSystem = require ('fs');
 
-router.post ('/upload', async (req, res) => {
-  try {
-    let formData = new formidable.IncomingForm ();
-    formData.parse (req, async (fields, files) => {
-      let oldPath = files.video.path;
-      let newPath =
-        'upload/videos/' + new Date ().getTime () + '-' + files.video.name;
+router.post ('/upload', async (err, req, res) => {
+  const form = formidable ({multiples: true});
+  form.parse (req, (fields, files) => {
+    let oldPath = files.video.path;
+    let newPath =
+      'upload/videos/' + new Date ().getTime () + '-' + files.video.name;
 
-      let name = fields.name;
+    let name = fields.name;
 
-      let oldPathThumbnail = files.thumbnail.path;
-      let thumbnail =
-        'upload/thumbnails/' +
-        new Date ().getTime () +
-        '-' +
-        files.thumbnail.name;
+    let oldPathThumbnail = files.thumbnail.path;
+    let thumbnail =
+      'upload/thumbnails/' +
+      new Date ().getTime () +
+      '-' +
+      files.thumbnail.name;
 
-      let date = new Date ().getTime ();
+    let date = new Date ().getTime ();
 
-      fileSystem.rename (oldPathThumbnail, thumbnail, error2 => {
-        console.log ('thumbnail upload error = ', error2);
-      });
-
-      fileSystem.rename (oldPath, newPath, async () => {
-        const video = new Video ({
-          name,
-          file,
-          thumbnail,
-          date,
-        });
-
-        await video.save ();
-      });
+    fileSystem.rename (oldPathThumbnail, thumbnail, error2 => {
+      console.log ('thumbnail upload error = ', error2);
     });
-    //const {name, file, thumbnail, date} = req.body;
 
-    res
-      .status (201)
-      .json ({message: `Video has been uploaded ${files.video.name}`});
-  } catch (e) {
-    res.status (500).json ({message: `Something went wrong, try again ${e}`});
-  }
+    fileSystem.rename (oldPath, newPath, () => {
+      const video = new Video ({
+        name,
+        file,
+        thumbnail,
+        date,
+      });
+
+      video.save ();
+      res
+        .status (201)
+        .json ({message: `Video has been uploaded ${files.video.name}`});
+    });
+  });
+  //const {name, file, thumbnail, date} = req.body;
 });
 
 router.get ('/', async (req, res) => {
