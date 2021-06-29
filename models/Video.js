@@ -1,8 +1,8 @@
-const {Schema, model, Types} = require ('mongoose');
+const {Schema, model} = require ('mongoose');
 
 const schema = new Schema ({
   name: {type: String, required: true, unique: true},
-  file: {type: String, required: true},
+  path: {type: String, required: true},
   thumbnail: {type: String},
   date: {type: Date, required: true},
   views: {type: Number, default: 0},

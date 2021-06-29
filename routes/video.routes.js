@@ -9,27 +9,27 @@ var fileSystem = require ('fs');
 router.post ('/upload', async (req, res) => {
   try {
     let formData = new formidable.IncomingForm ();
-    formData.maxFileSize = 1000 * 1024 * 1204;
-    formData.parse (req, async function (fields, files) {
+    formData.parse (req, async (fields, files) => {
       let oldPath = files.video.path;
       let newPath =
-        'public/videos/' + new Date ().getTime () + '-' + files.video.name;
+        'upload/videos/' + new Date ().getTime () + '-' + files.video.name;
 
       let name = fields.name;
-      //let thumbnail = fields.thumbnailPath;
 
       let oldPathThumbnail = files.thumbnail.path;
       let thumbnail =
-        'public/thumbnails/' +
+        'upload/thumbnails/' +
         new Date ().getTime () +
         '-' +
         files.thumbnail.name;
 
-      fileSystem.rename (oldPathThumbnail, thumbnail, function (error2) {
+      let date = new Date ().getTime ();
+
+      fileSystem.rename (oldPathThumbnail, thumbnail, error2 => {
         console.log ('thumbnail upload error = ', error2);
       });
 
-      fileSystem.rename (oldPath, newPath, async function () {
+      fileSystem.rename (oldPath, newPath, async () => {
         const video = new Video ({
           name,
           file,
