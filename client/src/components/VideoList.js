@@ -13,9 +13,9 @@ export const VideoList = ({videos}) => {
             <div>
               <p>{video.name}</p>
               <p>{video.date}</p>
-              <p>{video.views}</p>
-              <p>{video.likes}</p>
-              <Link to={`/detail/${video._id}`} />
+              <p>Views: {video.views}</p>
+              <p>Likes: {video.likes}</p>
+              <Link to={`/detail/${video._id}`}>Open</Link>
             </div>
           </li>
         );
