@@ -3,46 +3,27 @@ const config = require ('config');
 const Video = require ('../models/Video');
 const router = Router ();
 const auth = require ('../middleware/auth.middleware');
-var formidable = require ('formidable');
-var fileSystem = require ('fs');
 
-router.post ('/upload', async (err, req, res) => {
-  const form = formidable ({multiples: true});
-  form.parse (req, (fields, files) => {
-    let oldPath = files.video.path;
-    let newPath =
-      'upload/videos/' + new Date ().getTime () + '-' + files.video.name;
+router.post ('/upload', (req, res, next) => {
+  let filedata = req.file;
+  console.log (filedata);
+  if (!filedata) res.status (500).json ({message: `Something went wrong`});
 
-    let name = fields.name;
+  const name = filedata.filename;
+  const path = filedata.path;
+  const date = new Date ();
 
-    let oldPathThumbnail = files.thumbnail.path;
-    let thumbnail =
-      'upload/thumbnails/' +
-      new Date ().getTime () +
-      '-' +
-      files.thumbnail.name;
-
-    let date = new Date ().getTime ();
-
-    fileSystem.rename (oldPathThumbnail, thumbnail, error2 => {
-      console.log ('thumbnail upload error = ', error2);
-    });
-
-    fileSystem.rename (oldPath, newPath, () => {
-      const video = new Video ({
-        name,
-        file,
-        thumbnail,
-        date,
-      });
-
-      video.save ();
-      res
-        .status (201)
-        .json ({message: `Video has been uploaded ${files.video.name}`});
-    });
+  const video = new Video ({
+    name,
+    path,
+    date,
   });
-  //const {name, file, thumbnail, date} = req.body;
+
+  video.save ();
+
+  res
+    .status (500)
+    .json ({message: `Video has been uploaded: ${filedata.filename}`});
 });
 
 router.get ('/', async (req, res) => {

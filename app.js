@@ -1,14 +1,18 @@
 const express = require ('express');
 const config = require ('config');
 const mongoose = require ('mongoose');
+const storageConfig = require ('./storageConfig');
+const multer = require ('multer');
 
 app = express ();
+
+app.use (multer ({storage: storageConfig}).single ('video'));
+
+app.use ('/api/video', require ('./routes/video.routes'));
 
 app.use (express.json ({extended: true}));
 
 app.use ('/api/auth', require ('./routes/auth.routes'));
-
-app.use ('/api/video', require ('./routes/video.routes'));
 
 const PORT = config.get ('port') || 5000;
 
