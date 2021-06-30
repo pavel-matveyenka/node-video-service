@@ -29,7 +29,7 @@ router.post ('/upload', (req, res, next) => {
 router.get ('/', async (req, res) => {
   try {
     const videos = await Video.find ({});
-    //res.send (videos);
+    res.status (200).json (videos);
   } catch (e) {
     res.status (500).json ({message: 'Something went wrong, try again'});
   }
@@ -38,6 +38,7 @@ router.get ('/', async (req, res) => {
 router.get ('/:id', async (req, res) => {
   try {
     const video = await Video.findById (req.params.id);
+    res.status (200).json (video);
   } catch (e) {
     res.status (500).json ({message: 'Something went wrong, try again'});
   }
