@@ -2,7 +2,7 @@ export const CreatePage = () => {
   return (
     <div className="row">
       <div className="col s6 offset-s3">
-        <h1>Upload the video</h1>
+        <h1 style={{fontSize: '45px', marginLeft: '25px'}}>Upload the video</h1>
 
         <div className="card blue darken-1">
           <div className="card-content white-text">
@@ -32,7 +32,7 @@ export const CreatePage = () => {
                     className="custom-input"
                     multiple="multiple"
                   />
-                  <label htmlFor="video" className="active">Upload video</label>
+                  {/* <label htmlFor="video" className="active">Upload video</label> */}
                 </div>
                 {/* <div className="input-field">
                   <input
