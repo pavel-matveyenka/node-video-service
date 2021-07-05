@@ -6,16 +6,19 @@ export const VideoList = ({videos}) => {
     return <p className="center">The video list is empty</p>;
   }
   return (
-    <ul className="collection">
+    <ul className="collection" style={{width: '80%'}}>
       {videos.map (video => {
         return (
           <li className="collection-item" key={video._id}>
             <div>
-              <p>{video.name}</p>
-              <p>{video.date}</p>
-              <p>Views: {video.views}</p>
-              <p>Likes: {video.likes}</p>
-              <Link to={`/detail/${video._id}`}>Open</Link>
+              <p><b>{video.name.replace (/.mp4/, '')}</b></p>
+              <p>{video.date.slice (0, video.date.indexOf ('T', 0))}</p>
+              <Link
+                to={`/detail/${video._id}`}
+                className="waves-effect waves-light btn-small blue darken-1"
+              >
+                Play
+              </Link>
             </div>
           </li>
         );

@@ -41,3 +41,12 @@ input.custom-input:focus + label{
     padding: 2rem;
     font-size: 25px;
 }
+
+.video-title{
+    font-size: 20px;
+}
+
+.video-footer{
+    padding: 10px;
+    font-size: 20px;
+}

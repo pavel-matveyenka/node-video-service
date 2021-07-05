@@ -13,17 +13,6 @@ export const CreatePage = () => {
               enctype="multipart/form-data"
             >
               <div className="custom-input-field">
-                {/* <div className="input-field">
-                  <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    className="custom-input"
-                  />
-                  <label htmlFor="name" className="active">
-                    Name of your video
-                  </label>
-                </div> */}
                 <div className="input-field">
                   <input
                     id="video"
@@ -32,20 +21,7 @@ export const CreatePage = () => {
                     className="custom-input"
                     multiple="multiple"
                   />
-                  {/* <label htmlFor="video" className="active">Upload video</label> */}
                 </div>
-                {/* <div className="input-field">
-                  <input
-                    id="thumbnail"
-                    type="file"
-                    name="thumbnail"
-                    className="custom-input"
-                    multiple="multiple"
-                  />
-                  <label htmlFor="thumbnail" className="active">
-                    Upload thumbnail
-                  </label>
-                </div> */}
                 <input type="submit" value="Upload" />
               </div>
             </form>
